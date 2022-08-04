@@ -1,1 +1,26 @@
-Hello World
+<!DOCTYPE HTML>
+<html>
+<head>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script>
+var liffID = '1657358806-71zerAL1';
+
+liff.init({
+  liffId: liffID
+}).then(function() {
+    if (!liff.isLoggedIn()) {
+        console.log("你還沒登入Line哦！");
+        liff.login();
+    } else {
+        console.log("你已經登入Line哦！");
+    }
+
+}).catch(function(error) {
+    console.log(error);
+});
+</script>
+</head>
+<body>
+
+</body>
+</html>
