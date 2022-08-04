@@ -1,1 +1,35 @@
-Hello World
+<!DOCTYPE HTML>
+<html>
+<head>
+<script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+<script>
+var liffID = '1657358806-71zerAL1';
+function initializeLiff(myLiffId) {
+    liff
+        .init({
+            liffId: myLiffId
+        })
+        .then(() => {
+            initializeApp();
+        })
+        .catch((err) => {
+            alert('啟動失敗。');
+        });
+}
+
+function initializeApp() {
+    var h = document.getElementById('result');
+    h.innerHTML = 'Hello!!'+liff.getAccessToken();
+}
+
+//使用 LIFF_ID 初始化 LIFF 應用
+initializeLiff(liffID);
+</script>
+</head>
+<body>
+Line 測試
+    <div>
+        <div id="h"></div>
+    </div>
+</body>
+</html>
