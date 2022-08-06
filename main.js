@@ -76,9 +76,10 @@ window.addEventListener('load', () => {
       btnAccessToken.addEventListener('click', () => {
         // 先確認使用者是登入狀態
         if(isLoggedIn) {
+
           liff.getAccessToken().then(accessToken => {
             const outputContent = document.getElementById('result-info');
-            outputContent.value = accessToken
+            outputContent.value =  `${accessToken}`;
           })
         }
       });
