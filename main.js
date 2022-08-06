@@ -76,11 +76,10 @@ window.addEventListener('load', () => {
       btnAccessToken.addEventListener('click', () => {
         // 先確認使用者是登入狀態
         if(isLoggedIn) {
-
-          liff.getAccessToken().then(accessToken => {
+            const accessToken = liff.getAccessToken();
+            alert(accessToken);
             const outputContent = document.getElementById('result-info');
             outputContent.value =  `${accessToken}`;
-          })
         }
       });
       const btnProfile = document.getElementById('profile');
