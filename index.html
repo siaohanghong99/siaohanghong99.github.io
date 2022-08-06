@@ -1,39 +1,119 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>The title</title>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<script>
-var liffID = '1657358806-qypVO7rz';
-function initializeLiff(myLiffId) {
-    liff
-        .init({
-            liffId: myLiffId
-        })
-        .then(() => {
-            initializeApp();
-        })
-        .catch((err) => {
-            alert('啟動失敗。');
-        });
-}
-
-function initializeApp() {
-    var h = document.getElementById('result');
-    h.innerHTML = 'Hello!!'+liff.getAccessToken();
-}
- $(document).ready(function() {
-//使用 LIFF_ID 初始化 LIFF 應用
-initializeLiff(liffID);
-      });
-</script>
-</head>
-<body>
-Line 測試
-    <div>
-        <div id="h"></div>
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>LIFF v2 test</title>
+  </head>
+  <body>
+    <div class="container" id="app">
+      <h1>LIFF v2 基本使用示範</h1>
+      <section class="row">
+        <div class="twelve column">
+          <!-- 填寫 LIFF ID-->
+          <div class="box">
+            <h2>填寫 LIFF ID 以啟動範例功能</h2>
+            <p>請參考筆記文，建立自己的 LIFF 後，將取得的 LIFF ID 填入以下欄位。</p>
+            <input class="u-full-width" id="liff-input" type="text" placeholder="請填入LIFF ID" value="1657358806-qypVO7rz"/>
+            <button class="button-primary" id="liff-btn">確認並啟動</button>
+          </div>
+          <!-- 基本環境資訊-->
+          <div class="box">
+            <h2>基本環境資訊</h2>
+            <h3>示範</h3>
+            <textarea class="u-full-width" id="result-basic" placeholder="結果會顯示在這"></textarea>
+          </div>
+          <hr/>
+          <!-- 登入、登出-->
+          <div class="box">
+            <h2>登入、登出</h2>
+            <ul>
+              <li>僅支援外部瀏覽器</li>
+              <li>「redirectUri」的網址必須要在後台中的「Callback URL」先設定好，不然會 400 error</li>
+            </ul>
+            <h3>示範</h3>
+            <ul>
+              <li>外部瀏覽器時才有作用</li>
+              <li>登入 / 登出 後，可以看上面的「isLoggedIn」是否有變動，true 為登入、false 為未登入</li>
+            </ul>
+            <button id="login">登入 LINE</button>
+            <button id="logout">登出 LINE</button>
+          </div>
+          <hr/>
+          <!-- 取得使用者資料-->
+          <div class="box">
+            <h2>取得使用者資料</h2>
+            <p>官方提醒：</p>
+            <blockquote>
+              <p>Do not track a user with cookies, localStorage, or sessionStorage or link LINE user information with external session information without getting the user's consent. While you can use cookies, localStorage, or sessionStorage with the LIFF app, their use may be restricted in the future.</p>
+              <p>未經用戶同意，請勿使用 cookie，localStorage 或 sessionStorage 跟踪用戶或將 LINE 用戶信息與外部會話信息鏈接。雖然您可以通過 LIFF 應用程序使用 cookie，localStorage 或 sessionStorage，但將來可能會限制它們的使用。</p>
+            </blockquote>
+            <h3>示範</h3>
+            <p>需先登入 LINE</p>
+            <button id="getContext">取得使用者類型資料</button>
+            <button id="profile">取得使用者公開資料</button>
+            <button id="getEmail">取得使用者 email</button>
+            <textarea class="u-full-width" id="result-info" placeholder="結果會顯示在這"></textarea>
+          </div>
+          <hr/>
+          <!-- 傳訊息-->
+          <div class="box">
+            <h2>傳訊息</h2>
+            <ul>
+              <li>會用你的帳號傳訊息</li>
+              <li>傳送訊息：無法在外部瀏覽器使用</li>
+              <li>傳送訊息：後台 Scopes 的「chat_message.write」要打勾</li>
+              <li>傳送訊息給朋友：登入 LINE 帳號即可使用</li>
+              <li>傳送訊息給朋友：LIFF 後台上的「shareTargetPicker」必須要是打勾</li>
+              <li>這邊傳訊息的部份，是用你的帳號傳訊息到 好友、聊天室、群組、機器人</li>
+              <li>使用者登入時的「傳送訊息至聊天室」要是「許可」</li>
+            </ul>
+            <h3>示範</h3>
+            <input class="u-full-width" id="message" type="text" placeholder="請填入要傳送的訊息"/>
+            <button id="sendMessage">傳送訊息</button>
+            <button id="sendShareTarget">傳送訊息給朋友</button>
+          </div>
+          <hr/>
+          <!-- 連結-->
+          <div class="box">
+            <h2>連結</h2>
+            <h3>示範</h3>
+            <div class="row">
+              <div class="one-half column">
+                <input class="u-full-width" id="uri" type="url" placeholder="請填入要開啟的連結"/>
+                <button id="openWindow">開啟連結</button>
+              </div>
+              <div class="one-half column">
+                <input class="u-full-width" id="result-uri" type="url" placeholder="這邊會顯示本頁連結"/>
+                <button id="getLink">取得當下頁面的連結</button>
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <!-- 掃描器-->
+          <div class="box">
+            <h2>掃描器</h2>
+            <ol>
+              <li>僅支援在 LINE App 內開啟時</li>
+              <li>後台的「Scan QR」必須是打勾的，而且使用者要在 LINE App 上開啟時才能使用</li>
+              <li>會回傳字串回來</li>
+              <li>IOS 的 LINE 在 9.19.0 以上的版本無法使用，會回傳 undefined</li>
+            </ol>
+            <input class="u-full-width" id="result-qr" type="text" placeholder="這邊會顯示掃描後的結果"/>
+            <button id="qrScan">打開 QR code 掃描器</button>
+          </div>
+          <hr/>
+          <!-- 關閉-->
+          <div class="box">
+            <h2>關閉 LIFF</h2>
+            <p>僅支援在 LINE App 內開啟時</p>
+            <button id="closeLIFF">關閉 LIFF</button>
+          </div>
+        </div>
+      </section>
     </div>
-</body>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="main.js?v=1.1.4"></script>
+  </body>
 </html>
