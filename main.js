@@ -72,6 +72,16 @@ window.addEventListener('load', () => {
           return liff.getProfile().then(profile => profile);
         }
       }
+      const btnAccessToken = document.getElementById('accessToken');
+      btnAccessToken.addEventListener('click', () => {
+        // 先確認使用者是登入狀態
+        if(isLoggedIn) {
+          liff.getAccessToken().then(accessToken => {
+            const outputContent = document.getElementById('result-info');
+            outputContent.value = accessToken
+          })
+        }
+      });
       const btnProfile = document.getElementById('profile');
       btnProfile.addEventListener('click', () => {
         // 先確認使用者是登入狀態
