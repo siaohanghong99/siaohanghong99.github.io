@@ -40,7 +40,7 @@ window.addEventListener('load', () => {
         // 先確認使用者未登入
         if(!isLoggedIn) {
           liff.login({
-            redirectUri: 'https://letswritetw.github.io/letswrite-liff-init/'
+            redirectUri: 'https://siaohanghong99.github.io/'
           });
         }
       });
