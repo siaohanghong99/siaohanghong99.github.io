@@ -3,6 +3,7 @@
 <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>The title</title>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script>
 var liffID = '1657358806-qypVO7rz';
@@ -23,9 +24,10 @@ function initializeApp() {
     var h = document.getElementById('result');
     h.innerHTML = 'Hello!!'+liff.getAccessToken();
 }
-
+ $(document).ready(function() {
 //使用 LIFF_ID 初始化 LIFF 應用
 initializeLiff(liffID);
+      });
 </script>
 </head>
 <body>
