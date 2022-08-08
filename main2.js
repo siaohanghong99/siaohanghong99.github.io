@@ -1,6 +1,7 @@
 window.addEventListener('load', () => {
 
   let liffID = '1657358806-qypVO7rz';
+    let originUrl = window.location.origin;
     let appID = 'OAKS_LOGON_SSO';
 
   triggerLIFF();
