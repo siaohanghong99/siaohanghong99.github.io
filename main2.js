@@ -21,7 +21,7 @@ window.addEventListener('load', () => {
         if (!isLoggedIn) {
             alert('Not Login');
         }else{
-            window.location.href = originUrl+'/index_line_auth.php?app_id='+encodeURIComponent(appID)+'&accessToken='+encodeURIComponent(liff.getAccessToken());
+            window.location.href = 'https://oaks.loca.hgiga.com/index_line_auth.php?app_id='+encodeURIComponent(appID)+'&accessToken='+encodeURIComponent(liff.getAccessToken());
         }
     }).catch(error => {
         console.log(error);
